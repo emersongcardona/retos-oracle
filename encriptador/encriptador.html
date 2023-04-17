@@ -1,33 +1,71 @@
 <meta charset="UTF-8">
 <h1>"Encriptador secreto"</h1>
 <input/>
-<button> Encriptar </button>
-
+<button onclick="encriptar()"> Encriptar </button>
+<button onclick="desencriptar()"> Desencriptar </button>
 
 
 <script>
     var codigo = ["ai", "enter", "imes", "ober", "ufat"] 
     //var secreto = Math.round(Math.random()*10);
-    var frase = document.querySelector("input");
-    frase.focus();
-    function verificar(){
-        // if( secreto == parseInt(input.value)){
-        //     alert("acerto");
-        // }else{
-        //     alert("fallo");
-        //     document.write("<br>");
-        //     document.write("el numero era " + secreto);
-        // }
-
-        for(let i = 0; i <= frase.length; i++ ){
-            document.write(frase[i]);
-            document.write("<br>");
+    var input = document.querySelector("input");
+    var diccionario_encriptado = {};
+    input.focus();
+    function encriptar(){
+        var frase = input.value;
+        if(frase.length == 0){
+            alert("mensaje vacio, introduzca frase a encriptar");
+            return;
         }
+        
+        var frase_encriptada = "";
+        //encriptador
+        for(let i = 0; i < frase.length; i++ ){
+            
+            switch(frase[i]){
+                case "a":
+                    frase_encriptada = frase_encriptada + codigo[0];
+                    break;
+                case "e":
+                    frase_encriptada = frase_encriptada + codigo[1];
+                    break;
+                case "i":
+                    frase_encriptada = frase_encriptada + codigo[2];
+                    break;
+                case "o":
+                    frase_encriptada = frase_encriptada + codigo[3];
+                    break;
+                case "u":
+                    frase_encriptada = frase_encriptada + codigo[4];
+                    break;
 
-         input.value = "";
-         input.focus();
+                default:
+                    frase_encriptada = frase_encriptada + frase[i];
+
+            }
+        }
+        diccionario_encriptado.frase = frase;
+        diccionario_encriptado.frase_encriptada = frase_encriptada;
+        //mostrar frase encriptada
+        alert(diccionario_encriptado.frase_encriptada);
+        input.value = "";
+        input.focus();
+
     }
 
-    var button = document.querySelector("button");
-    button.onclick = verificar;
+    function desencriptar(){
+            //verificar que antes se encripto una frase
+            if(!diccionario_encriptado.frase_encriptada){
+                alert("encripte una frase primero");
+                return;
+            }
+
+            //mostrar frase desencriptada
+            alert(diccionario_encriptado.frase);
+            
+            //limpiar objeto json de los valores previos
+            delete diccionario_encriptado["frase"];
+            delete diccionario_encriptado["frase_encriptada"];
+
+    }
 </script>
