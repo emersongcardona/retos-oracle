@@ -1,0 +1,33 @@
+<meta charset="UTF-8">
+<h1>"Encriptador secreto"</h1>
+<input/>
+<button> Encriptar </button>
+
+
+
+<script>
+    var codigo = ["ai", "enter", "imes", "ober", "ufat"] 
+    //var secreto = Math.round(Math.random()*10);
+    var frase = document.querySelector("input");
+    frase.focus();
+    function verificar(){
+        // if( secreto == parseInt(input.value)){
+        //     alert("acerto");
+        // }else{
+        //     alert("fallo");
+        //     document.write("<br>");
+        //     document.write("el numero era " + secreto);
+        // }
+
+        for(let i = 0; i <= frase.length; i++ ){
+            document.write(frase[i]);
+            document.write("<br>");
+        }
+
+         input.value = "";
+         input.focus();
+    }
+
+    var button = document.querySelector("button");
+    button.onclick = verificar;
+</script>
